@@ -1,0 +1,42 @@
+int trap(int* height, int heightSize) 
+{
+    int l=0,r=heightSize-1,sum=0,left=0,right=0,max=0,flag,rtemp,ltemp;
+    if (height == NULL || heightSize < 2) 
+    {
+        return 0;
+    }
+    for(int i=0;i<heightSize;i++)
+    {
+        if(height[i]>max)
+        {
+            max=height[i];
+            flag=i;
+        }
+        sum+=height[i];
+    }
+    rtemp=height[r];
+    ltemp=height[l];
+    left=height[l]*(flag-l);
+    right=height[r]*(r-flag);
+    while(r>=flag)
+    {
+        
+        if(height[r]>rtemp)
+        {
+            right+=(height[r]-rtemp)*(r-flag);
+            rtemp=height[r];
+        }
+         r--;
+    }
+    while(l<=flag)
+    {
+        
+        if(height[l]>ltemp)
+        {
+            left+=(height[l]-ltemp)*(flag-l);
+            ltemp=height[l];
+        }
+       l++;
+    }
+    return (left+right+max-sum);
+}
