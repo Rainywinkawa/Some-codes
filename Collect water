@@ -1,3 +1,4 @@
+//42.接雨水
 int trap(int* height, int heightSize) 
 {
     int l=0,r=heightSize-1,sum=0,left=0,right=0,max=0,flag,rtemp,ltemp;
