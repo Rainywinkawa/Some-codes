@@ -1,0 +1,24 @@
+//买卖股票的最佳时期I
+int maxProfit(int* prices, int pricesSize) 
+{
+    int min=prices[0],max=0,S=0,i=0,data1=0,data2=0;
+    if(pricesSize>1) max=prices[1];
+    for(i=0;i<pricesSize;i++)
+    {
+        if(prices[i]<min&&i>data1) 
+        {
+            min=prices[i];
+            data1=i;
+            if(data1>data2)max=0; 
+            continue;
+        }
+        if(prices[i]>=max&&i>data2) 
+        {
+            max=prices[i];  
+            data2=i;
+            if(max-min>S)S=max-min;
+            continue;
+        }
+    }
+    return S;
+}
